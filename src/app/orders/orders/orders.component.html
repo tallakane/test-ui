@@ -1,0 +1,79 @@
+<div class="head">
+  <div>
+    <h2>Order list</h2>
+    <p class="sub">Here is the tracking of your perfume decoration orders.</p>
+  </div>
+  <button mat-flat-button class="add-btn" (click)="openAddOrder()"><mat-icon>add</mat-icon> ADD ORDER</button>
+</div>
+
+<div class="toolbar">
+  <div class="search">
+    <mat-icon>search</mat-icon>
+    <span>Search...</span>
+  </div>
+  <div class="filters">
+    <span class="filter-label">Filter by</span>
+    <button mat-button class="filter-btn">
+      All customers <mat-icon iconPositionEnd>expand_more</mat-icon>
+    </button>
+    <button mat-button class="filter-btn">
+      Period <mat-icon iconPositionEnd>expand_more</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="total">Value : 250 000 € ● Total : 23</div>
+
+<div class="grid">
+  @for (o of orders; track $index) {
+    <mat-card class="order" [class.selected]="o.selected" appearance="raised">
+      <div class="row top">
+        <div class="thumb"><mat-icon>{{ o.icon }}</mat-icon></div>
+        <div class="title">
+          <div class="name">
+            {{ o.customer }}
+            @if (o.urgent) { <span class="urgent">Urgent</span> }
+          </div>
+          <div class="ref">{{ o.ref }}</div>
+        </div>
+        <button mat-icon-button class="more"><mat-icon>more_vert</mat-icon></button>
+      </div>
+
+      <div class="deco">
+        <small>Decoration</small>
+        <div>{{ o.decoration }}</div>
+      </div>
+
+      <div class="mid">
+        <div>
+          <small>Bottles</small>
+          <div class="bottles">{{ o.bottles }}</div>
+        </div>
+        <div class="price">{{ o.price }}</div>
+      </div>
+
+      <div class="status">{{ o.statusLabel }}</div>
+
+      <div class="foot">
+        <div>
+          <small>Delivery date</small>
+          <div class="date">{{ o.delivery }}</div>
+        </div>
+        <div class="right">
+          <small>Order</small>
+          <div class="date">{{ o.order }}</div>
+        </div>
+      </div>
+    </mat-card>
+  }
+</div>
+
+<div class="pager">
+  <span class="showing">Showing 1 to 10 of 150 orders</span>
+  <div class="rows">
+    <span>Rows per page</span>
+       <button mat-button class="filter-btn" appearance="outline">
+      10 <mat-icon iconPositionEnd>expand_more</mat-icon>
+    </button>
+  </div>
+</div>
